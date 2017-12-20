@@ -15,6 +15,32 @@ exports.handler = function(event, context) {
     });
 };
 
+// Get-Mission-Details
+
+var doc = require('aws-sdk');
+var dynamo = new doc.DynamoDB();
+
+exports.handler = function(event, context) {
+        condition = {};
+        condition["SuperHero"] = {
+                ComparisonOperator: 'EQ',
+                AttributeValueList:[{S: event.superhero}]
+            }
+
+    var getParams = {
+        TableName:'SuperMission',
+        ProjectionExpression:"SuperHero, MissionStatus, Villain1, Villain2, Villain3",
+        KeyConditions: condition
+   };
+
+    dynamo.query(getParams, function(err, data){
+        if (err) console.log(err, err.stack); // an error occurred
+        else {
+             context.succeed(data);
+        }
+    });
+};
+
 
 
 // SuperHeroes Data
@@ -73,7 +99,7 @@ exports.handler = function(event, context) {
     ]
 }
 
-//  found function qwickLab:
+//  found function.zip for Lambda
 
 console.log('Loading function');
 var doc = require('dynamodb-doc');
@@ -146,7 +172,7 @@ var fun = function(event, context)
 exports.handler = fun;
 
 
-//   found CloudFormation qwicklab
+//   found CloudFormation 
 
 ---
 AWSTemplateFormatVersion: '2010-09-09'
