@@ -1,1 +1,1 @@
-# dynamodbLambda
+# Dynamodb Lambda lessons
