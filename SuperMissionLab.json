@@ -99,7 +99,7 @@ exports.handler = function(event, context) {
     ]
 }
 
-//  found function.zip for Lambda
+//   function.zip for Lambda
 
 console.log('Loading function');
 var doc = require('dynamodb-doc');
